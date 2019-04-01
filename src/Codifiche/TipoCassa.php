@@ -43,7 +43,7 @@ abstract class TipoCassa
     const INPS = 'TC22';
 
 
-    protected static $tipoCassa = array(
+    protected static $codifiche = array(
         'TC01' => 'Cassa nazionale previdenza e assistenza avvocati e procuratori legali',
         'TC02' => 'Cassa previdenza dottori commercialisti',
         'TC03' => 'Cassa previdenza e assistenza geometri',

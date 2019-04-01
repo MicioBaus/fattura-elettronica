@@ -45,9 +45,9 @@ class DatiGenerali implements XmlSerializableInterface
     /** @var DatiBollo */
     protected $datiBollo;
     /** @var DatiCassaPrevidenziale */
-    protected $datiCassaPrevidenziale;
+    protected $datiCassaPrevidenziale = array();
     /** @var ScontoMaggiorazione */
-    protected $scontoMaggiorazione;
+    protected $scontoMaggiorazione = array();
     /** @var DatiOrdineAcquisto */
     protected $datiOrdineAcquisto;
     /** @var DatiContratto */
@@ -99,14 +99,14 @@ class DatiGenerali implements XmlSerializableInterface
         $this->datiBollo = $datiBollo;
     }
 
-    public function setDatiCassaPrevidenziale(DatiCassaPrevidenziale $datiCassaPrevidenziale)
+    public function addDatiCassaPrevidenziale(DatiCassaPrevidenziale $datiCassaPrevidenziale)
     {
-        $this->datiCassaPrevidenziale = $datiCassaPrevidenziale;
+        $this->datiCassaPrevidenziale[] = $datiCassaPrevidenziale;
     }
 
-    public function setScontoMaggiorazione(ScontoMaggiorazione $scontoMaggiorazione)
+    public function addScontoMaggiorazione(ScontoMaggiorazione $scontoMaggiorazione)
     {
-        $this->scontoMaggiorazione = $scontoMaggiorazione;
+        $this->scontoMaggiorazione[] = $scontoMaggiorazione;
     }
 
     public function setDatiOrdineAcquisto(DatiOrdineAcquisto $datiOrdineAcquisto)
@@ -172,11 +172,11 @@ class DatiGenerali implements XmlSerializableInterface
                 if ($this->datiBollo) {
                     $this->datiBollo->toXmlBlock($writer);
                 }
-                if ($this->datiCassaPrevidenziale) {
-                    $this->datiCassaPrevidenziale->toXmlBlock($writer);
+                foreach ($this->datiCassaPrevidenziale as $datiCassaPrevidenziale) {
+                    $datiCassaPrevidenziale->toXmlBlock($writer);
                 }
-                if ($this->scontoMaggiorazione) {
-                    $this->scontoMaggiorazione->toXmlBlock($writer);
+                foreach ($this->scontoMaggiorazione as $scontoMaggiorazione) {
+                    $scontoMaggiorazione->toXmlBlock($writer);
                 }
                 $writer->writeElement('ImportoTotaleDocumento',fe_number_format($this->importoTotaleDocumento, 2));
                 $this->writeXmlFields($writer);
