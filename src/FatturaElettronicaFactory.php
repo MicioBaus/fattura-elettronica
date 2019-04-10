@@ -164,7 +164,7 @@ class FatturaElettronicaFactory
      */
     public function create(
         DatiGenerali $datiGenerali,
-        DatiPagamento $datiPagamento = null,
+        $datiPagamento = array(),
         DettaglioLinee $linee,
         $progessivoInvio = false,
         DatiRiepilogo $datiRiepilogo = null,
